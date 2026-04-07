@@ -658,10 +658,17 @@ footer {
 
   .profile-tabs {
     margin: 0 -15px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+    overflow: visible;
     padding: 2px 15px 14px;
+    scroll-snap-type: none;
   }
 
   .tab-button {
+    width: 100%;
+    white-space: normal;
     padding: 10px 13px;
     font-size: 0.9rem;
   }
@@ -715,6 +722,7 @@ footer {
   }
 
   .content-grid,
+  .pair-controls,
   .pair-grid,
   .mini-profiles {
     gap: 12px;
@@ -736,6 +744,7 @@ footer {
   }
 
   .pair-controls {
+    grid-template-columns: 1fr;
     gap: 10px;
     margin-bottom: 14px;
   }
@@ -746,6 +755,10 @@ footer {
 }
 
 @media (max-width: 390px) {
+  .profile-tabs {
+    grid-template-columns: 1fr;
+  }
+
   .team-visual-panel .symbol-map {
     grid-template-columns: 1fr;
   }

@@ -26,9 +26,9 @@ const members = [
       "Make room for experiments that do not have immediate strategic payoff."
     ],
     support: [
-      "Clear decision criteria before major tradeoffs.",
-      "Teammates who surface risks early and directly.",
-      "Short feedback loops so fast execution stays aligned."
+      "Direct, concise input before decisions are finalized.",
+      "People who are comfortable naming risks early.",
+      "Enough room to move quickly once expectations are clear."
     ]
   },
   {
@@ -58,9 +58,9 @@ const members = [
       "Balance intellectual challenge with encouragement and closure."
     ],
     support: [
-      "A defined endpoint for brainstorming conversations.",
-      "Simple ownership checkpoints after new ideas are approved.",
-      "Space to challenge assumptions without slowing final decisions."
+      "Clear signals for when discussion should shift from exploring to deciding.",
+      "Space to challenge assumptions without it being taken personally.",
+      "Simple follow-up expectations after a high-energy conversation."
     ]
   },
   {
@@ -90,9 +90,9 @@ const members = [
       "Balance high expectations with visible appreciation for progress."
     ],
     support: [
-      "Advance context before creative or strategic feedback sessions.",
-      "Clear brand standards and success criteria for campaigns.",
-      "Enough solo planning time before group review."
+      "Advance context before being asked for a strong opinion.",
+      "Time to think independently before group discussion.",
+      "Clear standards so feedback and expectations feel grounded."
     ]
   },
   {
@@ -122,9 +122,9 @@ const members = [
       "Ask for direct support when the role becomes detail-heavy."
     ],
     support: [
-      "Written decisions for budget approvals and spending priorities.",
-      "Early notice when an event or project may affect finances.",
-      "A clear distinction between values discussion and final budget action."
+      "Written clarity around decisions and next steps.",
+      "A thoughtful pace when conversations involve people-impact or values.",
+      "Encouragement to share concerns before they feel fully polished."
     ]
   },
   {
@@ -154,9 +154,9 @@ const members = [
       "Pair creativity with a lightweight implementation checklist."
     ],
     support: [
-      "Flexible brainstorming time before technical scope is finalized.",
-      "A lightweight checklist for launches, handoffs, and maintenance.",
-      "Permission to prototype, followed by a clear cutoff for shipping."
+      "Room to brainstorm possibilities before narrowing the plan.",
+      "Gentle structure that keeps ideas from spreading too wide.",
+      "Clear moments to switch from creative exploration to follow-through."
     ]
   },
   {
@@ -186,9 +186,9 @@ const members = [
       "Protect focus time for documentation and administrative follow-through."
     ],
     support: [
-      "Clear meeting outcomes before notes and follow-ups are finalized.",
-      "Shared ownership for action items instead of informal delegation.",
-      "Room to name unresolved tension before the group moves on."
+      "Open communication about how people are feeling in the group.",
+      "Shared responsibility so support work does not become invisible.",
+      "Permission to name disagreement before moving toward harmony."
     ]
   }
 ];
