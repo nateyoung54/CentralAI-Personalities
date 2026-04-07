@@ -28,6 +28,7 @@ html {
 body {
   min-height: 100vh;
   margin: 0;
+  overflow-x: hidden;
   font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--ink);
   background:
@@ -152,6 +153,10 @@ footer {
   background: rgba(255, 255, 255, 0.075);
 }
 
+.nav-pill {
+  white-space: nowrap;
+}
+
 .hero-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.6fr);
@@ -263,6 +268,8 @@ main {
   gap: 10px;
   overflow-x: auto;
   padding: 4px 2px 16px;
+  scrollbar-width: thin;
+  scroll-snap-type: x proximity;
 }
 
 .tab-button {
@@ -274,6 +281,7 @@ main {
   padding: 10px 14px;
   cursor: pointer;
   transition: 160ms ease;
+  scroll-snap-align: start;
 }
 
 .tab-button[aria-selected="true"],
@@ -542,5 +550,218 @@ footer {
   .nav {
     align-items: flex-start;
     flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero,
+  main,
+  footer {
+    width: min(100% - 22px, 1180px);
+  }
+
+  .hero {
+    padding-top: 12px;
+  }
+
+  .nav,
+  .hero-grid,
+  .dashboard-shell,
+  .profile-card,
+  .pair-card {
+    border-radius: 22px;
+  }
+
+  .nav {
+    gap: 14px;
+    padding: 13px;
+  }
+
+  .brand {
+    align-items: center;
+    gap: 10px;
+  }
+
+  .brand img {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+  }
+
+  .brand h1 {
+    font-size: 1.05rem;
+  }
+
+  .nav-pill {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-grid {
+    gap: 18px;
+    margin-top: 14px;
+    padding: 22px;
+  }
+
+  .hero h2 {
+    margin-top: 14px;
+    font-size: clamp(2.35rem, 15vw, 4rem);
+    line-height: 0.94;
+  }
+
+  .hero-copy {
+    font-size: 0.96rem;
+    line-height: 1.58;
+  }
+
+  .badge {
+    min-height: 34px;
+    padding: 8px 12px;
+    line-height: 1.35;
+  }
+
+  .team-visual-panel {
+    align-self: stretch;
+    padding: 14px;
+    border-radius: 22px;
+  }
+
+  .team-visual-panel .symbol-map {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .symbol-item {
+    min-height: 84px;
+    border-radius: 18px;
+  }
+
+  .symbol-item span {
+    font-size: 1.65rem;
+  }
+
+  main {
+    gap: 16px;
+    padding-bottom: 28px;
+  }
+
+  .dashboard-shell {
+    padding: 15px;
+  }
+
+  .section-heading {
+    margin-bottom: 14px;
+  }
+
+  .section-heading h2 {
+    font-size: 1.65rem;
+  }
+
+  .profile-tabs {
+    margin: 0 -15px;
+    padding: 2px 15px 14px;
+  }
+
+  .tab-button {
+    padding: 10px 13px;
+    font-size: 0.9rem;
+  }
+
+  .profile-card,
+  .pair-card {
+    padding: 15px;
+  }
+
+  .profile-layout {
+    gap: 18px;
+  }
+
+  .member-hero {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 13px;
+  }
+
+  .avatar-wrap {
+    grid-row: span 2;
+  }
+
+  .avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 24px;
+    font-size: 2rem;
+  }
+
+  .avatar-wrap span {
+    max-width: 72px;
+    font-size: 0.62rem;
+    line-height: 1.25;
+    text-align: center;
+  }
+
+  .member-hero h3,
+  .pair-title h3 {
+    font-size: clamp(2rem, 12vw, 3rem);
+  }
+
+  .type-pill {
+    grid-column: 2;
+    max-width: 100%;
+    align-self: start;
+    font-size: 0.84rem;
+  }
+
+  .member-hero .support-box {
+    grid-column: 1 / -1;
+  }
+
+  .content-grid,
+  .pair-grid,
+  .mini-profiles {
+    gap: 12px;
+  }
+
+  .insight-box,
+  .pair-box,
+  .mini-profile {
+    padding: 15px;
+    border-radius: 20px;
+  }
+
+  .trait-top {
+    font-size: 0.82rem;
+  }
+
+  .trait-meta {
+    font-size: 0.72rem;
+  }
+
+  .pair-controls {
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  select {
+    min-height: 48px;
+  }
+}
+
+@media (max-width: 390px) {
+  .team-visual-panel .symbol-map {
+    grid-template-columns: 1fr;
+  }
+
+  .member-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .avatar-wrap,
+  .type-pill,
+  .member-hero .support-box {
+    grid-column: auto;
+  }
+
+  .avatar-wrap span {
+    max-width: none;
+    text-align: left;
   }
 }
