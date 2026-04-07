@@ -243,6 +243,13 @@ function listItems(items) {
   return items.map((item) => `<li>${item}</li>`).join("");
 }
 
+function trimItems(items, maxItems = 3) {
+  return items.slice(0, maxItems).map((item) => {
+    const trimmed = item.length > 115 ? `${item.slice(0, 112).trimEnd()}...` : item;
+    return trimmed;
+  });
+}
+
 function renderProfile(index) {
   activeIndex = index;
   const member = members[index];
@@ -265,17 +272,17 @@ function renderProfile(index) {
         <span class="type-pill">${member.type} | ${member.title}</span>
         <section class="insight-box support-box">
           <h4>Support Needed</h4>
-          <ul>${listItems(member.support)}</ul>
+          <ul>${listItems(trimItems(member.support, 2))}</ul>
         </section>
       </div>
       <div class="content-grid">
         <section class="insight-box">
           <h4>Workplace Strengths</h4>
-          <ul>${listItems(member.strengths)}</ul>
+          <ul>${listItems(trimItems(member.strengths, 3))}</ul>
         </section>
         <section class="insight-box">
           <h4>Growth Opportunities</h4>
-          <ul>${listItems(member.growth)}</ul>
+          <ul>${listItems(trimItems(member.growth, 3))}</ul>
         </section>
         <section class="insight-box traits">
           <h4>Personality Dials</h4>
@@ -327,6 +334,7 @@ function buildPairing(a, b) {
   const bLetters = getLetterPreferences(b);
   const shared = [];
   const differences = [];
+  const tips = [];
 
   dimensions.forEach((dimension, index) => {
     const aTrait = a.traits[index];
@@ -347,24 +355,44 @@ function buildPairing(a, b) {
   const strengths = [
     ...shared.slice(0, 2),
     `${a.name}'s ${a.title.toLowerCase()} style can pair with ${b.name}'s ${b.title.toLowerCase()} style to combine different leadership instincts.`,
-    `${a.role} and ${b.role} collaboration is strongest when decisions, owners, and follow-up notes are visible.`
+    `${a.role} and ${b.role} collaboration is strongest when decisions, owners, and follow-up notes are visible.`,
+    "When both people summarize agreements out loud, execution quality usually improves."
   ];
 
   const friction = differences.length
-    ? differences.slice(0, 3)
+    ? differences.slice(0, 4)
     : [
         "They may agree quickly, so they should still invite outside perspectives before finalizing major decisions.",
         "Similar instincts can create blind spots if neither person is assigned to challenge the plan.",
-        "They should define what a successful handoff looks like so alignment becomes execution."
+        "They should define what a successful handoff looks like so alignment becomes execution.",
+        "If timing and expectations are not named early, small mismatches can compound."
       ];
 
-  const tips = [
-    "Start with the goal, then decide whether the conversation is for brainstorming, deciding, or reviewing.",
-    "Name one owner and one next step before ending the conversation.",
-    "Use growth opportunities as prompts for support, not as fixed labels."
-  ];
+  if (aLetters[0] !== bLetters[0]) {
+    tips.push("Balance prep and live discussion: share context in writing first, then use meeting time for decisions.");
+  } else {
+    tips.push(`Use their shared ${aLetters[0] === "E" ? "extraverted" : "introverted"} energy style to keep cadence predictable.`);
+  }
 
-  return { strengths, friction, tips };
+  if (aLetters[1] !== bLetters[1]) {
+    tips.push("Pair big-picture ideas with concrete examples so strategy and execution stay aligned.");
+  }
+
+  if (aLetters[2] !== bLetters[2]) {
+    tips.push("Define both people-impact and logic criteria before deciding so tradeoffs are explicit.");
+  }
+
+  if (aLetters[3] !== bLetters[3]) {
+    tips.push("Set a firm deadline plus one revision checkpoint to balance flexibility with closure.");
+  } else {
+    tips.push(`Lean on shared ${aLetters[3] === "J" ? "structure" : "adaptability"}, but still assign clear owners.`);
+  }
+
+  if (tips.length < 3) {
+    tips.push("Before each project touchpoint, lock one owner, one deadline, and one success metric.");
+  }
+
+  return { strengths, friction, tips: tips.slice(0, 3) };
 }
 
 function renderPairing() {
@@ -382,42 +410,21 @@ function renderPairing() {
 
   pairCard.innerHTML = `
     <div class="pair-title">
-      <p class="role">${a.name} + ${b.name}</p>
-      <h3>${a.type} meets ${b.type}</h3>
-      <p class="pair-meta">${a.title} x ${b.title}. Designed for transparent team viewing with neutral, workplace-focused language.</p>
-    </div>
-    <div class="mini-profiles">
-      <div class="mini-profile">
-        <b class="mini-symbol">${a.symbol}</b>
-        <strong>${a.name}</strong>
-        <span>${a.role} | ${a.type} | ${a.title}</span>
-      </div>
-      <div class="mini-profile">
-        <b class="mini-symbol">${b.symbol}</b>
-        <strong>${b.name}</strong>
-        <span>${b.role} | ${b.type} | ${b.title}</span>
-      </div>
+      <h3>${a.name} + ${b.name}</h3>
+      <p class="pair-meta">${a.type} x ${b.type} for ${a.role} and ${b.role} collaboration.</p>
     </div>
     <div class="pair-grid">
       <section class="pair-box">
         <h4>Likely Strengths Together</h4>
-        <ul>${listItems(pairing.strengths)}</ul>
+        <ul>${listItems(trimItems(pairing.strengths, 4))}</ul>
       </section>
       <section class="pair-box">
         <h4>Possible Friction Points</h4>
-        <ul>${listItems(pairing.friction)}</ul>
+        <ul>${listItems(trimItems(pairing.friction, 4))}</ul>
       </section>
-      <section class="pair-box">
+      <section class="pair-box pair-box-compact">
         <h4>Working Agreement Tips</h4>
-        <ul>${listItems(pairing.tips)}</ul>
-      </section>
-      <section class="pair-box">
-        <h4>Quick Read</h4>
-        <ul>
-          <li>${a.name}: strongest dial is ${dominantTrait(a.traits.reduce((max, trait) => trait.value > max.value ? trait : max, a.traits[0]))}.</li>
-          <li>${b.name}: strongest dial is ${dominantTrait(b.traits.reduce((max, trait) => trait.value > max.value ? trait : max, b.traits[0]))}.</li>
-          <li>Use this pairing as a conversation starter before projects, meetings, or role handoffs.</li>
-        </ul>
+        <ul>${listItems(trimItems(pairing.tips, 3))}</ul>
       </section>
     </div>
   `;
