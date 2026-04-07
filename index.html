@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CentralAI E-Board Working Styles</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <header class="hero">
+      <nav class="nav">
+        <div class="brand">
+          <img src="CentralAI%20White%20Logo.png" alt="CentralAI logo">
+          <div>
+            <p class="eyebrow">CentralAI</p>
+            <h1>E-Board Working Styles</h1>
+          </div>
+        </div>
+        <a class="nav-pill" href="#pairing">Working Style Pairing</a>
+      </nav>
+
+      <section class="hero-grid">
+        <div>
+          <p class="badge">Professional, people-first, and lightly playful</p>
+          <h2>Understand the team at a glance.</h2>
+          <p class="hero-copy">
+            Toggle through each officer to compare strengths, growth opportunities, and personality dials.
+            Pair two members to preview collaboration strengths and possible friction points.
+          </p>
+        </div>
+        <div class="team-visual-panel" aria-label="Team personality symbols">
+          <p class="eyebrow">Personality Symbols</p>
+          <div class="symbol-map" id="symbolMap" aria-label="Team personality symbols"></div>
+        </div>
+      </section>
+    </header>
+
+    <main>
+      <section class="dashboard-shell" aria-labelledby="profiles-heading">
+        <div class="section-heading">
+          <p class="eyebrow">Profile Cards</p>
+          <h2 id="profiles-heading">Choose a team member</h2>
+        </div>
+        <div class="profile-tabs" id="profileTabs" role="tablist" aria-label="E-board members"></div>
+        <article class="profile-card" id="profileCard" aria-live="polite"></article>
+      </section>
+
+      <section class="dashboard-shell pairing-shell" id="pairing" aria-labelledby="pairing-heading">
+        <div class="section-heading">
+          <p class="eyebrow">Collaboration Tool</p>
+          <h2 id="pairing-heading">Working Style Pairing</h2>
+          <p>
+            Select any two people to view how their styles can reinforce each other and where they should align expectations.
+          </p>
+        </div>
+
+        <div class="pair-controls">
+          <label>
+            Person A
+            <select id="personA"></select>
+          </label>
+          <label>
+            Person B
+            <select id="personB"></select>
+          </label>
+        </div>
+
+        <article class="pair-card" id="pairCard" aria-live="polite"></article>
+      </section>
+    </main>
+
+    <footer>
+      <p>CentralAI leadership dashboard. Personality notes are workplace-oriented prompts, not fixed labels.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
